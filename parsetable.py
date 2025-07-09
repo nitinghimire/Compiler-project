@@ -42,11 +42,15 @@ def parseTable(grammar,itemSetDict):
                     wholeProduction=prod.replace(".","")
                     break
             followTerminal= follow.follow(grammar,completedNonterminal)
+
+            if completedNonterminal==grammar[0].split("\N{RIGHTWARDS ARROW}")[0]:
+                table[list(dictitem[2].keys())[0]][firstRow.index(symbol)]="Accept"
             for symbol in followTerminal:
                 
                 table[list(dictitem[2].keys())[0]][firstRow.index(symbol)]="r"+str(grammar.index(wholeProduction))
 
     print(table)
+    return table,firstRow
 
 if __name__=="__main__":
     import itemcollection
