@@ -1,7 +1,8 @@
  
 def closure(aGrammar,item, ntlist):
+    item=item.copy()
     temp=[]
-    ntlistnotseen=ntlist
+    ntlistnotseen=ntlist.copy()
     for _ in range(len(aGrammar)):
         for prod in item:
             try:
@@ -21,8 +22,8 @@ def closure(aGrammar,item, ntlist):
             # except IndexError as err:
             #     print("Index error occured meaning that the . is at the end of the production")
             #     continue
-        if(item is not None):
-            item = list(set(item+temp))
+        # if(item is not None):
+        #     item = list(set(item+temp))
     return item
 
 
