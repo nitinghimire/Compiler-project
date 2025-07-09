@@ -4,8 +4,11 @@ def nextSymbolList(item):
     symbols=[]
     for prod in item:
         right= prod.split('.')[-1]
-        if(right[0] != ""):
-            symbols.append(right[0])
+        try:
+            if(right[0] != ""):
+                symbols.append(right[0])
+        except IndexError as err:
+            continue
     symbols=list(set(symbols))
     return symbols
 
@@ -18,11 +21,14 @@ def moveDot(prod):
 def goto(state,symbol,grammar,ntlist):
     nextItem=[]
     for prod in state:
-        print(prod.split(".")[-1][0])
+        
         # temp =[moveDot(n) for n in state if prod.split(".")[-1][0]==symbol]
         temp=[]
-        if(prod.split(".")[-1][0]==symbol):
-            temp=[moveDot(prod)]
+        try:
+            if(prod.split(".")[-1][0]==symbol):
+                temp=[moveDot(prod)]
+        except IndexError:
+            continue
         nextItem=nextItem+temp
         print("This is before closure")
         print(nextItem)
