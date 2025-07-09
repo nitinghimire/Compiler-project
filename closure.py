@@ -4,7 +4,10 @@ def closure(aGrammar,item, ntlist):
     ntlistnotseen=ntlist
     for _ in range(len(aGrammar)):
         for prod in item:
-            _, right= prod.split(".")
+            try:
+                _, right= prod.split(".")
+            except ValueError as err:
+                continue
             if(right ==""):
                 continue
             # try:
